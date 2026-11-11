@@ -370,3 +370,654 @@
   </script>
 </body>
 </html>
+ขั้นตอนเสริม: หากต้องการเอาขึ้นเว็บออนไลน์ให้ทีมเปิดดูได้ทุกคน (ฟรี)
+
+หากต้องการให้เพื่อนร่วมงานหรือหัวหน้าเปิดดูผ่านมือถือหรือคอมเครื่องอื่นได้โดยไม่ต้องส่งไฟล์:
+นำไฟล์ dashboard.html นี้ไปอัปโหลดขึ้น GitHub Pages, Netlify Drop, หรือ Vercel
+คุณจะได้ลิงก์ URL เว็บ เช่น https://your-name.github.io/asset-dashboard ให้ทุกคนเปิดดู Dashboard ที่ซิงค์กับ Google Sheets แบบสดๆ ได้ตลอดเวลาครับ!
+ขอวิธีทำ GitHub Pages แบบละเอียด
+Gemini response
+Model thoughts
+การนำไฟล์ Dashboard ขึ้น GitHub Pages เป็นวิธีที่ง่าย รวดเร็ว และ ฟรี 100% โดยหน้าเว็บจะทำงานเสมือนเว็บไซต์จริงที่ทุกคนในทีมสามารถเปิดดูผ่านคอมพิวเตอร์ แท็บเล็ต หรือมือถือได้ทันทีครับ
+
+นี่คือคู่มือแนะนำแบบทีละขั้นตอนอย่างละเอียดครับ:
+สิ่งสำคัญที่ต้องรู้ก่อนเริ่ม (เคล็ดลับ):
+แนะนำให้เปลี่ยนชื่อไฟล์จาก dashboard.html เป็น index.html
+
+เพราะระบบของ GitHub และเว็บเซิร์ฟเวอร์จะมองหาไฟล์ที่ชื่อ index.html เป็นหน้าแรกของเว็บไซต์โดยอัตโนมัติ ทำให้ลิงก์ของคุณเปิดขึ้นมาใช้งานได้ทันทีโดยไม่ต้องพิมพ์ชื่อไฟล์ต่อท้าย URL
+ขั้นตอนที่ 1: เตรียมบัญชี GitHub และไฟล์
+เข้าไปที่เว็บไซต์ github.com
+หากยังไม่มีบัญชี ให้กด Sign up เพื่อสมัครสมาชิก (ใช้อีเมลและตั้งรหัสผ่าน) จากนั้นยืนยันตัวตนในอีเมลให้เรียบร้อย
+เมื่อเข้าสู่ระบบเรียบร้อยแล้ว ให้เตรียมไฟล์โค้ด Dashboard ไว้บนเครื่องของคุณ โดยตั้งชื่อไฟล์ว่า index.html
+ขั้นตอนที่ 2: สร้าง Repository (ที่เก็บโปรเจกต์)
+เมื่อล็อกอินเข้ามาที่หน้าหลักของ GitHub ให้มองหาเครื่องมือด้านบน:
+คลิกที่เครื่องหมายบวก + ตรงมุมขวาบนของจอ
+เลือก "New repository"
+กรอกรายละเอียดดังนี้:
+Repository name: ตั้งชื่อที่ต้องการ (แนะนำเป็นภาษาอังกฤษตัวพิมพ์เล็กและขีดกลาง เช่น fixed-asset-dashboard หรือ it-inventory)
+Description: ใส่คำอธิบายสั้นๆ (จะใส่หรือไม่ใส่ก็ได้)
+Visibility: เลือกเป็น Public (สำคัญมาก: บัญชีฟรีต้องเลือก Public จึงจะเปิดใช้งาน GitHub Pages ได้)
+Initialize this repository with: ทำเครื่องหมายถูกที่ Add a README file
+กดปุ่มสีเขียว "Create repository" ด้านล่าง
+ขั้นตอนที่ 3: อัปโหลดไฟล์ index.html
+เมื่อสร้างเสร็จ คุณจะอยู่ในหน้า Repository ที่เพิ่งสร้างขึ้น
+คลิกปุ่ม "Add file" (อยู่แถวๆ เหนือรายการไฟล์) แล้วเลือก "Upload files"
+ลากไฟล์ index.html จากคอมพิวเตอร์ของคุณมาวางลงในกรอบสี่เหลี่ยม (หรือกด choose your files เพื่อเลือกไฟล์)
+รอแถบอัปโหลดขึ้นเต็ม 100%
+เลื่อนลงมาด้านล่างที่หัวข้อ Commit changes:
+สามารถพิมพ์ข้อความกำกับ เช่น Add index.html dashboard
+ตรวจสอบว่าเลือกที่ "Commit directly to the main branch"
+กดปุ่มสีเขียว "Commit changes"
+ขั้นตอนที่ 4: เปิดใช้งานระบบ GitHub Pages
+ในหน้า Repository เดียวกัน ให้ดูที่เมนูด้านบน แล้วคลิกที่แท็บ "Settings" (รูปฟันเฟืองด้านขวาสุด)
+ดูแถบเมนูด้านซ้ายมือ ในหมวด Code and automation ให้คลิกเลือก "Pages"
+ที่หัวข้อ Build and deployment:
+ช่อง Source: ตรวจสอบว่าเลือกเป็น Deploy from a branch
+ใต้หัวข้อ Branch:
+เปลี่ยนจาก None ให้เลือกเป็น main
+โฟลเดอร์ด้านหลังให้ปล่อยไว้ที่ / (root)
+กดปุ่ม "Save"
+ขั้นตอนที่ 5: รอระบบ Build และเปิดเข้าชมเว็บไซต์
+หลังจากกด Save ให้รอระบบของ GitHub ประมวลผลและสร้างหน้าเว็บประมาณ 1–2 นาที
+ลองกด รีเฟรชหน้าเว็บ (F5) ที่หน้าการตั้งค่า Pages นั้น
+คุณจะเห็นกล่องข้อความสีเขียวปรากฏขึ้นด้านบนพร้อมข้อความ:
+"Your site is live at https://<ชื่อบัญชีของคุณ>.github.io/<ชื่อ-repo>/"
+คลิกปุ่ม "Visit site" หรือคลิกที่ลิงก์ URL นั้นได้ทันที!
+ข้อควรตรวจสอบหากเปิดเว็บแล้วข้อมูลไม่แสดง
+สิทธิ์การแชร์ของ Google Sheets: ตรวจสอบให้แน่ใจว่าชีต Inventory ตั้งค่าการแชร์เป็น "ทุกคนที่มีลิงก์มีสิทธิ์อ่าน" (Anyone with the link can view) แล้วเรียบร้อย
+การอัปเดตข้อมูล: เมื่อมีการเพิ่ม ลบ หรือแก้ไขข้อมูลใน Google Sheets ข้อมูลในหน้า Dashboard บน GitHub Pages จะซิงค์ตามทันที เพียงแค่กดปุ่ม "รีเฟรชข้อมูล" บนหน้า Dashboard โดยที่คุณไม่ต้องเข้าไปอัปโหลดไฟล์ HTML บน GitHub ใหม่ครับ
+แล้วหลังจากนี้ถ้าจะแก้ไข index.html เราต้องทำยังไง
+Gemini response
+สำหรับการแก้ไขไฟล์ index.html บน GitHub ทำได้ง่ายมากครับ โดยคุณสามารถเลือกทำได้ 2 วิธีหลัก ตามความสะดวกเลยครับ:
+วิธีที่ 1: แก้ไขโค้ดบนเบราว์เซอร์ผ่านเว็บ GitHub โดยตรง (ง่ายและเร็วที่สุด แนะนำ ⭐)
+
+วิธีนี้เหมาะมากสำหรับการปรับแก้ข้อความ เปลี่ยนสี ปรับ Layout เล็กน้อย หรือวางโค้ดทับใหม่ โดยไม่ต้องดาวน์โหลดโปรแกรมใดๆ เพิ่มเติม:
+เข้าไปที่เว็บ github.com แล้วล็อกอินเข้าบัญชีของคุณ1
+เข้าไปที่ Repository ของโปรเจกต์ Dashboard ของคุณ1
+ในรายการไฟล์ ให้คลิกที่ชื่อไฟล์ index.html213
+มองไปที่มุมบนขวาของกล่องแสดงโค้ด จะเห็น ไอคอนรูปดินสอ (Edit this file) ให้คลิกที่ไอคอนรูปดินสอ13
+ทำการแก้ไขโค้ดตามที่ต้องการ (หรือกด Ctrl + A แล้ววางโค้ดชุดใหม่ทับทั้งหมด)421
+เมื่อแก้เสร็จแล้ว ให้มองไปที่มุมบนขวา จะมีปุ่มสีเขียวเขียนว่า "Commit changes..." ให้คลิกปุ่มนี้213
+จะมีหน้าต่างเล็กๆ เด้งขึ้นมา:1
+ช่องข้อความ สามารถพิมพ์โน้ตสั้นๆ ได้ว่าแก้อะไรไป (เช่น Update chart colors หรือจะปล่อยไว้ตามค่าเริ่มต้นก็ได้)21
+เลือก Commit directly to the main branch23
+คลิกปุ่มสีเขียว "Commit changes"213
+เสร็จเรียบร้อยครับ! GitHub Pages จะเริ่มอัปเดตเว็บไซต์ให้โดยอัตโนมัติ1
+วิธีที่ 2: แก้ไขไฟล์บนคอมพิวเตอร์ของคุณ แล้วอัปโหลดทับไฟล์เดิม
+
+วิธีนี้เหมาะกรณีที่คุณนำไฟล์ไปเปิดแก้ในโปรแกรมบนเครื่อง (เช่น Notepad หรือ VS Code) แล้วอยากส่งไฟล์ใหม่ขึ้นไปแทนที่:
+แก้ไขไฟล์ index.html บนคอมพิวเตอร์ของคุณ แล้วกดบันทึก (Save) ให้เรียบร้อย
+เปิดเบราว์เซอร์ เข้าไปที่ Repository ของคุณบน GitHub1
+คลิกที่ปุ่ม "Add file" (อยู่แถวๆ เหนือรายการไฟล์) แล้วเลือก "Upload files"
+ลากไฟล์ index.html ตัวใหม่จากเครื่องของคุณมาวางลงในช่องสี่เหลี่ยม
+
+(ระบบของ GitHub จะตรวจจับว่าเป็นชื่อไฟล์เดียวกัน และจะทำการอัปเดตทับไฟล์เดิมให้อัตโนมัติ)
+เลื่อนลงมาด้านล่าง คลิกปุ่มสีเขียว "Commit changes"3
+⏳ ข้อสังเกตหลังจากกดแก้ไข (สำคัญมาก)
+ต้องรอประมาณ 1–3 นาที: หลังจากกด Commit แล้ว เซิร์ฟเวอร์ของ GitHub Pages จะต้องใช้เวลาประมวลผล (Deploy) เล็กน้อย หน้าเว็บจริงถึงจะเปลี่ยน135
+ปัญหาแคชของเบราว์เซอร์ (Browser Cache):
+
+หากผ่านไป 2–3 นาทีแล้วเปิดเว็บขึ้นมาแต่หน้าตายังเหมือนเดิม ไม่ต้องตกใจครับ เป็นเพราะเบราว์เซอร์จำหน้าเก่าไว้ ให้ทำการ Hard Refresh เพื่อล้างแคชหน้าเว็บ:135
+Windows: กดปุ่ม Ctrl + F5 (หรือ Ctrl + Shift + R)3
+Mac: กดปุ่ม Command + Shift + R3
+หรือลองเปิดดูใน โหมดไม่ระบุตัวตน (Incognito Window) ได้เลยครับ
+แล้วหน้า Dashboard นี้สามารถกดเข้าไปแก้ไขรายละเอียดอุปกรณ์ผ่านหน้า Dashboaerd ได้เลยมั้ย หรือต้องเข้าไปแก้ที่ Google Sheet
+Gemini response
+Model thoughts
+ณ ตอนนี้ยังกดแก้ไขผ่านหน้าเว็บโดยตรงไม่ได้ครับ ต้องเข้าไปแก้ที่ Google Sheets
+
+เนื่องจากการเชื่อมต่อปัจจุบันใช้ Google Visualization API ซึ่งเป็นระบบ "อ่านข้อมูลอย่างเดียว (Read-Only)" ทำให้หน้าเว็บทำหน้าที่เป็นหน้าจอแสดงผล (Dashboard) เพียงอย่างเดียวครับ
+แต่ถ้าต้องการให้ "กดแก้ไขผ่านหน้า Dashboard ได้เลย" ทำได้มั้ย?
+
+ทำได้แน่นอนครับ! โดยการเปลี่ยนให้หน้าเว็บกลายเป็น ระบบจัดการข้อมูลแบบ 2 ทาง (Read & Write)
+
+การจะทำระบบนี้จะต้องมีตัวกลางในการรับ-ส่งข้อมูล ซึ่งวิธีที่ง่าย สะดวก และฟรีที่สุด คือการใช้ Google Apps Script (Web App) เข้ามาเป็น API ครับ
+กลไกการทำงานเมื่ออัปเกรดเป็นระบบแก้ไขผ่านหน้าเว็บ:
+บนหน้า Dashboard (HTML):
+แต่ละแถวในตารางจะมีปุ่ม "แก้ไข" (Edit / ไอคอนดินสอ) เพิ่มขึ้นมา
+เมื่อคลิก จะมีหน้าต่างป๊อปอัป (Modal) เด้งขึ้นมาพร้อมแบบฟอร์มให้แก้ไขข้อมูล เช่น เปลี่ยนผู้ครอบครอง (Assigned To), เปลี่ยนสถานะ (Status: In Use / Spare / Broken), หรือแก้ไขราคาทุน
+เมื่อกดปุ่ม "บันทึก" (Save) หน้าเว็บจะส่งข้อมูลที่แก้ไขแล้วไปยัง Google Apps Script
+Google Apps Script (ตัวกลาง):
+จะไปค้นหาแถวของรหัสนั้นใน Google Sheets แล้วทำการอัปเดตข้อมูลในช่องที่แก้ไขให้อัตโนมัติทันที
+ส่งสัญญาณกลับมาบอกหน้าเว็บว่า "บันทึกสำเร็จ" และตารางจะอัปเดตข้อมูลใหม่ให้ทันที
+คุณอยากให้อัปเกรดเป็นระบบนี้เลยมั้ยครับ?
+
+หากสนใจอยากให้แก้ผ่านหน้าเว็บได้ ผมสามารถ:
+เขียนโค้ด Google Apps Script สั้นๆ ให้คุณนำไปวางในเมนู ส่วนขยาย (Extensions) > Apps Script ของ Google Sheets
+อัปเดตโค้ด index.html ชุดใหม่ที่มีปุ่มกดแก้ไขและหน้าต่างป๊อปอัปให้ทันทีครับ
+(หรือหากสะดวกคีย์ข้อมูลใน Google Sheets มากกว่า ก็สามารถใช้งานแบบเดิมที่ปลอดภัยและไม่ซับซ้อนได้เช่นกันครับ)
+ในหน้า Dashboard สามารถทำเป็น Dynamic ได้มั้ย ยกตัวอย่างเช่น กดเลือก Staus Spare ใน Chart ข้อมูลก็จะแสดงตามที่เราเลือก
+Gemini response
+ทำได้แน่นอนครับ! และทำให้ Dashboard น่าใช้งานขึ้นมากเลยครับ
+
+ระบบนี้เรียกว่า "Cross-Filtering" หรือ Dynamic Interactive Charts โดยเราสามารถเพิ่มฟังก์ชัน onClick เข้าไปใน Chart.js เมื่อคุณคลิกที่ส่วนใดส่วนหนึ่งของกราฟ:
+คลิกที่กราฟสถานะ (Status Pie Chart): เช่น คลิกที่ชิ้นเค้ก Spare -> Dropdown ด้านล่างจะเปลี่ยนเป็น Spare อัตโนมัติ และตารางจะกรองแสดงเฉพาะอุปกรณ์ที่เป็น Spare ทันที
+คลิกที่กราฟประเภท (Device Type Doughnut): เช่น คลิกที่ Laptop -> ตารางจะกรองแสดงเฉพาะ Laptop ทันที
+คลิกที่แท่งกราฟยี่ห้อ (Brand Bar Chart): เช่น คลิกที่แท่ง HP -> ตารางจะแสดงเฉพาะอุปกรณ์ยี่ห้อ HP ทันที
+คลิกซ้ำ หรือกดปุ่ม "ล้างตัวกรอง": หน้าเว็บจะปลดการกรองและกลับมาแสดงผลรวมทั้งหมด
+โค้ด index.html เวอร์ชัน Dynamic เต็มรูปแบบ (รองรับคลิกบนกราฟเพื่อกรองข้อมูล)
+
+คุณสามารถนำโค้ดด้านล่างนี้ไปวางทับในไฟล์ index.html บน GitHub ได้เลยครับ:
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Fixed Asset Dynamic Dashboard</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Prompt -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; }
+    .chart-container { cursor: pointer; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="bg-blue-600 p-2.5 rounded-xl shadow-inner">
+          <i class="fa-solid fa-laptop-file text-xl text-white"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight">IT Fixed Asset Dynamic Dashboard</h1>
+          <p class="text-xs text-slate-400">คลิกที่ชิ้นส่วนกราฟใดๆ เพื่อกรองข้อมูลในตารางอัตโนมัติ</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="lastUpdated" class="text-xs text-slate-400">กำลังโหลดข้อมูล...</span>
+        <button onclick="fetchSheetData()" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-xs font-medium rounded-lg shadow transition flex items-center gap-1.5">
+          <i class="fa-solid fa-arrows-rotate"></i> รีเฟรชข้อมูล
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6 flex-1 w-full">
+
+    <!-- KPI Summary Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">ราคาทุนรวม (Cost)</p>
+          <h3 id="kpiCost" class="text-2xl font-bold text-slate-900 mt-1">฿0.00</h3>
+          <p id="kpiCostSub" class="text-[11px] text-slate-400 mt-0.5">รวมทุกรายการ</p>
+        </div>
+        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-coins"></i>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">ค่าเสื่อมสะสม (Acc. Dep)</p>
+          <h3 id="kpiAccDep" class="text-2xl font-bold text-rose-600 mt-1">฿0.00</h3>
+          <p id="kpiAccDepSub" class="text-[11px] text-slate-400 mt-0.5">ตัดจ่ายตามอายุ</p>
+        </div>
+        <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-arrow-trend-down"></i>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">มูลค่าสุทธิ (NBV)</p>
+          <h3 id="kpiNBV" class="text-2xl font-bold text-emerald-600 mt-1">฿0.00</h3>
+          <p id="kpiNBVSub" class="text-[11px] text-slate-400 mt-0.5">มูลค่าคงเหลือปัจจุบัน</p>
+        </div>
+        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">จำนวนสินทรัพย์</p>
+          <h3 id="kpiCount" class="text-2xl font-bold text-slate-900 mt-1">0 รายการ</h3>
+          <p id="kpiCountSub" class="text-[11px] text-slate-400 mt-0.5">ในทะเบียนคุม</p>
+        </div>
+        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Filters Alert Bar (จะแสดงเมื่อมีการคลิกเลือกตัวกรอง) -->
+    <div id="filterAlert" class="hidden bg-blue-50 border border-blue-200 text-blue-800 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
+      <div class="flex items-center gap-2 text-sm">
+        <i class="fa-solid fa-filter text-blue-600"></i>
+        <span>กำลังกรองข้อมูล: <strong id="filterDetails" class="font-semibold text-blue-900"></strong></span>
+      </div>
+      <button onclick="resetAllFilters()" class="text-xs bg-white hover:bg-blue-100 text-blue-700 font-semibold px-3 py-1.5 rounded-lg border border-blue-300 transition flex items-center gap-1">
+        <i class="fa-solid fa-xmark"></i> ล้างตัวกรองทั้งหมด
+      </button>
+    </div>
+
+    <!-- Interactive Charts (กดที่ส่วนใดของกราฟเพื่อกรองข้อมูล) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Status Chart -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+        <div class="flex justify-between items-center mb-2">
+          <h4 class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-emerald-500"></i> สถานะการใช้งาน (Status)
+          </h4>
+          <span class="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md"><i class="fa-solid fa-hand-pointer mr-1"></i>คลิกเพื่อกรอง</span>
+        </div>
+        <div class="h-64 relative flex items-center justify-center chart-container flex-1">
+          <canvas id="statusChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Device Type Chart -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+        <div class="flex justify-between items-center mb-2">
+          <h4 class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie text-blue-500"></i> ประเภทอุปกรณ์ (Device Type)
+          </h4>
+          <span class="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md"><i class="fa-solid fa-hand-pointer mr-1"></i>คลิกเพื่อกรอง</span>
+        </div>
+        <div class="h-64 relative flex items-center justify-center chart-container flex-1">
+          <canvas id="typeChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Top Brands Chart -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+        <div class="flex justify-between items-center mb-2">
+          <h4 class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-chart-column text-indigo-500"></i> มูลค่าตามยี่ห้อ (Top 5 Brands)
+          </h4>
+          <span class="text-[10px] text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md"><i class="fa-solid fa-hand-pointer mr-1"></i>คลิกเพื่อกรอง</span>
+        </div>
+        <div class="h-64 relative flex items-center justify-center chart-container flex-1">
+          <canvas id="brandChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Table & Search -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div class="p-5 border-b border-slate-100 flex flex-col md:flex-row gap-4 justify-between items-center bg-slate-50/50">
+        <div class="relative w-full md:w-80">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input type="text" id="searchInput" oninput="renderTable()" placeholder="ค้นหารหัส, ผู้ถือครอง, ยี่ห้อ, รุ่น, S/N..." 
+                 class="w-full pl-10 pr-4 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition">
+        </div>
+        <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <select id="statusFilter" onchange="applyDropdownFilter()" class="px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-600">
+            <option value="">ทุกสถานะ</option>
+          </select>
+          <select id="typeFilter" onchange="applyDropdownFilter()" class="px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-600">
+            <option value="">ทุกประเภทอุปกรณ์</option>
+          </select>
+          <select id="brandFilter" onchange="applyDropdownFilter()" class="px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-600">
+            <option value="">ทุกยี่ห้อ</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-100/75 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
+              <th class="py-3.5 px-4">รหัสสินทรัพย์</th>
+              <th class="py-3.5 px-4">ประเภท</th>
+              <th class="py-3.5 px-4">ยี่ห้อ / รุ่น</th>
+              <th class="py-3.5 px-4">ผู้ครอบครอง / สถานที่</th>
+              <th class="py-3.5 px-4">สถานะ</th>
+              <th class="py-3.5 px-4 text-right">ราคาทุน (Cost)</th>
+              <th class="py-3.5 px-4 text-right">ค่าเสื่อมสะสม</th>
+              <th class="py-3.5 px-4 text-right">มูลค่าสุทธิ (NBV)</th>
+            </tr>
+          </thead>
+          <tbody id="assetTableBody" class="text-sm divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td colspan="8" class="text-center py-10 text-slate-400">กำลังเชื่อมต่อฐานข้อมูล Google Sheets...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-4 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500">
+        <span id="recordCount">แสดง 0 รายการ</span>
+        <span>ระบบทะเบียนสินทรัพย์ถาวร IT (Fixed Asset Management)</span>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const SPREADSHEET_ID = '1fq8wUywEhG01LLSXQRZdt5MG_D_7itt_0IDKwSAOdVo';
+    const SHEET_NAME = 'Fixed Asset';
+    const DATA_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&range=B9:P200`;
+
+    let allAssets = [];
+    let charts = {};
+    
+    // สถานะตัวกรองปัจจุบัน (Active Filters)
+    let activeFilter = {
+      status: '',
+      type: '',
+      brand: ''
+    };
+
+    async function fetchSheetData() {
+      try {
+        document.getElementById('lastUpdated').innerText = 'กำลังโหลด...';
+        const response = await fetch(DATA_URL);
+        const text = await response.text();
+        
+        const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const json = JSON.parse(jsonString);
+
+        const rows = json.table.rows;
+        allAssets = [];
+
+        for (let i = 1; i < rows.length; i++) {
+          const c = rows[i].c;
+          if (!c || !c[0] || !c[0].v) continue;
+
+          allAssets.push({
+            assetId: c[0] ? String(c[0].v) : '',
+            financeCode: c[1] ? String(c[1].v) : '',
+            type: c[2] ? String(c[2].v) : 'Other',
+            status: c[3] ? String(c[3].v) : 'Unknown',
+            assignedTo: c[4] ? String(c[4].v) : 'Unassigned',
+            brand: c[5] ? String(c[5].v) : 'Unknown',
+            model: c[6] ? String(c[6].v) : '',
+            serialNo: c[7] ? String(c[7].v) : '',
+            purchaseDate: c[8] ? (c[8].f || c[8].v) : '',
+            cost: c[9] ? (parseFloat(c[9].v) || 0) : 0,
+            lifeYears: c[10] ? c[10].v : 0,
+            salvage: c[11] ? c[11].v : 0,
+            annualDep: c[12] ? (parseFloat(c[12].v) || 0) : 0,
+            accDep: c[13] ? (parseFloat(c[13].v) || 0) : 0,
+            nbv: c[14] ? (parseFloat(c[14].v) || 0) : 0
+          });
+        }
+
+        populateDropdowns();
+        initCharts();
+        renderTable();
+
+        const now = new Date();
+        document.getElementById('lastUpdated').innerText = `อัปเดตล่าสุด: ${now.toLocaleTimeString('th-TH')}`;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById('lastUpdated').innerText = 'เกิดข้อผิดพลาด';
+        document.getElementById('assetTableBody').innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-8 text-rose-500 font-medium">
+              <i class="fa-solid fa-triangle-exclamation mr-1"></i> ไม่สามารถดึงข้อมูลได้ (กรุณาตรวจสอบสิทธิ์การแชร์ของชีต)
+            </td>
+          </tr>`;
+      }
+    }
+
+    function populateDropdowns() {
+      const statuses = [...new Set(allAssets.map(a => a.status))].filter(Boolean);
+      const types = [...new Set(allAssets.map(a => a.type))].filter(Boolean);
+      const brands = [...new Set(allAssets.map(a => a.brand))].filter(Boolean);
+
+      const statusSelect = document.getElementById('statusFilter');
+      statusSelect.innerHTML = '<option value="">ทุกสถานะ</option>';
+      statuses.forEach(s => statusSelect.innerHTML += `<option value="${s}">${s}</option>`);
+
+      const typeSelect = document.getElementById('typeFilter');
+      typeSelect.innerHTML = '<option value="">ทุกประเภทอุปกรณ์</option>';
+      types.forEach(t => typeSelect.innerHTML += `<option value="${t}">${t}</option>`);
+
+      const brandSelect = document.getElementById('brandFilter');
+      brandSelect.innerHTML = '<option value="">ทุกยี่ห้อ</option>';
+      brands.forEach(b => brandSelect.innerHTML += `<option value="${b}">${b}</option>`);
+    }
+
+    // สร้าง Chart พร้อมใส่ Event Listener เมื่อคลิกที่ชิ้นส่วนกราฟ
+    function initCharts() {
+      // 1. Status Chart (Pie)
+      const statusCounts = {};
+      allAssets.forEach(a => statusCounts[a.status] = (statusCounts[a.status] || 0) + 1);
+      const statusLabels = Object.keys(statusCounts);
+      const statusData = Object.values(statusCounts);
+
+      const ctxStatus = document.getElementById('statusChart').getContext('2d');
+      if (charts.status) charts.status.destroy();
+      charts.status = new Chart(ctxStatus, {
+        type: 'pie',
+        data: {
+          labels: statusLabels,
+          datasets: [{
+            data: statusData,
+            backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#94a3b8']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Prompt' } } } },
+          onClick: (evt, elements) => {
+            if (elements.length > 0) {
+              const index = elements[0].index;
+              const selectedStatus = statusLabels[index];
+              toggleFilter('status', selectedStatus);
+            }
+          }
+        }
+      });
+
+      // 2. Type Chart (Doughnut)
+      const typeCounts = {};
+      allAssets.forEach(a => typeCounts[a.type] = (typeCounts[a.type] || 0) + 1);
+      const typeLabels = Object.keys(typeCounts);
+      const typeData = Object.values(typeCounts);
+
+      const ctxType = document.getElementById('typeChart').getContext('2d');
+      if (charts.type) charts.type.destroy();
+      charts.type = new Chart(ctxType, {
+        type: 'doughnut',
+        data: {
+          labels: typeLabels,
+          datasets: [{
+            data: typeData,
+            backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#64748b', '#84cc16']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Prompt' } } } },
+          onClick: (evt, elements) => {
+            if (elements.length > 0) {
+              const index = elements[0].index;
+              const selectedType = typeLabels[index];
+              toggleFilter('type', selectedType);
+            }
+          }
+        }
+      });
+
+      // 3. Brand Chart (Bar - Top 5)
+      const brandValues = {};
+      allAssets.forEach(a => {
+        if (a.brand) brandValues[a.brand] = (brandValues[a.brand] || 0) + a.cost;
+      });
+      const sortedBrands = Object.entries(brandValues).sort((a,b) => b[1] - a[1]).slice(0, 5);
+      const brandLabels = sortedBrands.map(b => b[0]);
+      const brandData = sortedBrands.map(b => b[1]);
+
+      const ctxBrand = document.getElementById('brandChart').getContext('2d');
+      if (charts.brand) charts.brand.destroy();
+      charts.brand = new Chart(ctxBrand, {
+        type: 'bar',
+        data: {
+          labels: brandLabels,
+          datasets: [{
+            label: 'ราคาทุนรวม (บาท)',
+            data: brandData,
+            backgroundColor: '#6366f1',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { ticks: { font: { family: 'Prompt' } } } },
+          plugins: { legend: { display: false } },
+          onClick: (evt, elements) => {
+            if (elements.length > 0) {
+              const index = elements[0].index;
+              const selectedBrand = brandLabels[index];
+              toggleFilter('brand', selectedBrand);
+            }
+          }
+        }
+      });
+    }
+
+    // ฟังก์ชันจัดการการคลิกเปิด/ปิดการกรอง (Toggle Filter)
+    function toggleFilter(field, value) {
+      if (activeFilter[field] === value) {
+        activeFilter[field] = ''; // คลิกซ้ำเพื่อยกเลิกตัวกรอง
+      } else {
+        activeFilter[field] = value;
+      }
+      syncDropdownsWithFilters();
+      renderTable();
+    }
+
+    // รับค่าจาก Dropdown ข้างล่าง
+    function applyDropdownFilter() {
+      activeFilter.status = document.getElementById('statusFilter').value;
+      activeFilter.type = document.getElementById('typeFilter').value;
+      activeFilter.brand = document.getElementById('brandFilter').value;
+      renderTable();
+    }
+
+    function syncDropdownsWithFilters() {
+      document.getElementById('statusFilter').value = activeFilter.status;
+      document.getElementById('typeFilter').value = activeFilter.type;
+      document.getElementById('brandFilter').value = activeFilter.brand;
+    }
+
+    function resetAllFilters() {
+      activeFilter.status = '';
+      activeFilter.type = '';
+      activeFilter.brand = '';
+      document.getElementById('searchInput').value = '';
+      syncDropdownsWithFilters();
+      renderTable();
+    }
+
+    function renderTable() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+
+      // กรองรายการตาม Active Filter และ Search Box
+      const filtered = allAssets.filter(a => {
+        const matchesSearch = 
+          a.assetId.toLowerCase().includes(search) ||
+          a.assignedTo.toLowerCase().includes(search) ||
+          a.brand.toLowerCase().includes(search) ||
+          a.model.toLowerCase().includes(search) ||
+          a.serialNo.toLowerCase().includes(search);
+        
+        const matchesStatus = !activeFilter.status || a.status === activeFilter.status;
+        const matchesType = !activeFilter.type || a.type === activeFilter.type;
+        const matchesBrand = !activeFilter.brand || a.brand === activeFilter.brand;
+
+        return matchesSearch && matchesStatus && matchesType && matchesBrand;
+      });
+
+      // อัปเดตแถบแจ้งเตือนการกรอง (Filter Alert Bar)
+      updateFilterAlertBar();
+
+      // อัปเดตตัวเลข KPI ตามชุดข้อมูลที่กำลังถูกกรอง (Dynamic KPI)
+      updateDynamicKPIs(filtered);
+
+      // วาดแถวข้อมูลในตาราง
+      const tbody = document.getElementById('assetTableBody');
+      tbody.innerHTML = '';
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-400">ไม่พบรายการสินทรัพย์ที่ตรงกับเงื่อนไขการกรอง</td></tr>`;
+        document.getElementById('recordCount').innerText = `แสดง 0 จากทั้งหมด ${allAssets.length} รายการ`;
+        return;
+      }
+
+      filtered.forEach(a => {
+        let statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">Other</span>';
+        if (a.status === 'In Use') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-600">In Use</span>';
+        else if (a.status === 'Spare') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-600">Spare</span>';
+        else if (a.status === 'Broken') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-50 text-rose-600">Broken</span>';
+
+        tbody.innerHTML += `
+          <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+            <td class="py-3 px-4 font-semibold text-slate-900">${a.assetId}</td>
+            <td class="py-3 px-4 text-slate-600">${a.type}</td>
+            <td class="py-3 px-4">
+              <div class="font-medium text-slate-800">${a.brand}</div>
+              <div class="text-xs text-slate-400">${a.model}</div>
+            </td>
+            <td class="py-3 px-4 text-slate-600">${a.assignedTo}</td>
+            <td class="py-3 px-4">${statusBadge}</td>
+            <td class="py-3 px-4 text-right font-medium text-slate-900">${formatCurrency(a.cost)}</td>
+            <td class="py-3 px-4 text-right text-rose-600">${formatCurrency(a.accDep)}</td>
+            <td class="py-3 px-4 text-right font-bold text-emerald-600">${formatCurrency(a.nbv)}</td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('recordCount').innerText = `แสดง ${filtered.length} จากทั้งหมด ${allAssets.length} รายการ`;
+    }
+
+    function updateDynamicKPIs(filtered) {
+
+      const isFiltered = activeFilter.status || activeFilter.type || activeFilter.brand || document.getElementById('searchInput').value;
+      
+      const totalCost = filtered.reduce((sum, a) => sum + a.cost, 0);
+      const totalAccDep = filtered.reduce((sum, a) => sum + a.accDep, 0);
+      const totalNBV = filtered.reduce((sum, a) => sum + a.nbv, 0);
+
+      document.getElementById('kpiCost').innerText = formatCurrency(totalCost);
+      document.getElementById('kpiAccDep').innerText = formatCurrency(totalAccDep);
+      document.getElementById('kpiNBV').innerText = formatCurrency(totalNBV);
+      document.getElementById('kpiCount').innerText = `${filtered.length} รายการ`;
+
+      const subText = isFiltered ? 'ตามเงื่อนไขที่เลือก' : 'รวมทุกรายการ';
+      document.getElementById('kpiCostSub').innerText = subText;
+      document.getElementById('kpiAccDepSub').innerText = subText;
+      document.getElementById('kpiNBVSub').innerText = subText;
+      document.getElementById('kpiCountSub').innerText = isFiltered ? `จากทั้งหมด ${allAssets.length} ชิ้น` : 'ในทะเบียนคุม';
+    }
+
+    function updateFilterAlertBar() {
+      const filters = [];
+      if (activeFilter.status) filters.push(`สถานะ = "${activeFilter.status}"`);
+      if (activeFilter.type) filters.push(`ประเภท = "${activeFilter.type}"`);
+      if (activeFilter.brand) filters.push(`ยี่ห้อ = "${activeFilter.brand}"`);
+
+      const alertDiv = document.getElementById('filterAlert');
+      const detailsSpan = document.getElementById('filterDetails');
+
+      if (filters.length > 0) {
+        detailsSpan.innerText = filters.join(' | ');
+        alertDiv.classList.remove('hidden');
+      } else {
+        alertDiv.classList.add('hidden');
+      }
+    }
+
+    function formatCurrency(num) {
+      return '฿' + Number(num).toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    window.onload = fetchSheetData;
+  </script>
+</body>
+</html>
