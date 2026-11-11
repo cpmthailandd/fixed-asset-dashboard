@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Fixed Asset Management Dashboard</title>
+  <!-- Tailwind CSS สำหรับจัด Layout สวยงามทันสมัย -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js สำหรับสร้างกราฟ Dashboard -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome ไอคอน -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Prompt -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Header แถบด้านบน -->
+  <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="bg-blue-600 p-2.5 rounded-xl shadow-inner">
+          <i class="fa-solid fa-laptop-file text-xl text-white"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight">IT Fixed Asset Register & Dashboard</h1>
+          <p class="text-xs text-slate-400">ระบบทะเบียนคุมและบริหารสินทรัพย์ถาวรเทคโนโลยีสารสนเทศ</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="lastUpdated" class="text-xs text-slate-400">กำลังโหลดข้อมูล...</span>
+        <button onclick="fetchSheetData()" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-xs font-medium rounded-lg shadow transition flex items-center gap-1.5">
+          <i class="fa-solid fa-arrows-rotate"></i> รีเฟรชข้อมูล
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+
+    <!-- KPI Summary Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- ราคาทุนรวม -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">ราคาทุนรวม (Cost)</p>
+          <h3 id="kpiCost" class="text-2xl font-bold text-slate-900 mt-1">฿0.00</h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">มูลค่าจัดซื้อเริ่มต้น</p>
+        </div>
+        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-coins"></i>
+        </div>
+      </div>
+
+      <!-- ค่าเสื่อมราคาสะสม -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">ค่าเสื่อมสะสม (Acc. Dep)</p>
+          <h3 id="kpiAccDep" class="text-2xl font-bold text-rose-600 mt-1">฿0.00</h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">ตัดจ่ายตามอายุการใช้งาน</p>
+        </div>
+        <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-arrow-trend-down"></i>
+        </div>
+      </div>
+
+      <!-- มูลค่าสุทธิทางบัญชี -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">มูลค่าสุทธิ (NBV)</p>
+          <h3 id="kpiNBV" class="text-2xl font-bold text-emerald-600 mt-1">฿0.00</h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">มูลค่าคงเหลือทางบัญชี</p>
+        </div>
+        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+      </div>
+
+      <!-- จำนวนสินทรัพย์ทั้งหมด -->
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+          <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">สินทรัพย์ทั้งหมด</p>
+          <h3 id="kpiCount" class="text-2xl font-bold text-slate-900 mt-1">0 รายการ</h3>
+          <p class="text-[11px] text-slate-400 mt-0.5">ในระบบทะเบียนคุม</p>
+        </div>
+        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
+          <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ส่วนของกราฟแสดงผล (Charts) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+        <h4 class="text-sm font-semibold text-slate-800 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-chart-pie text-blue-500"></i> สัดส่วนประเภทอุปกรณ์
+        </h4>
+        <div class="h-64 relative flex items-center justify-center">
+          <canvas id="typeChart"></canvas>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+        <h4 class="text-sm font-semibold text-slate-800 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-chart-column text-indigo-500"></i> มูลค่าสินทรัพย์ตามยี่ห้อ (Top 5)
+        </h4>
+        <div class="h-64 relative flex items-center justify-center">
+          <canvas id="brandChart"></canvas>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
+        <h4 class="text-sm font-semibold text-slate-800 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-emerald-500"></i> สถานะการใช้งาน (Status)
+        </h4>
+        <div class="h-64 relative flex items-center justify-center">
+          <canvas id="statusChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- ตารางข้อมูลและช่องค้นหา (Data Table & Search) -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div class="p-5 border-b border-slate-100 flex flex-col md:flex-row gap-4 justify-between items-center bg-slate-50/50">
+        <div class="relative w-full md:w-96">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input type="text" id="searchInput" oninput="renderTable()" placeholder="ค้นหารหัส, ผู้ครอบครอง, ยี่ห้อ, รุ่น, S/N..." 
+                 class="w-full pl-10 pr-4 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition">
+        </div>
+        <div class="flex items-center gap-3 w-full md:w-auto">
+          <select id="typeFilter" onchange="renderTable()" class="px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-600">
+            <option value="">ทุกประเภทอุปกรณ์</option>
+          </select>
+          <select id="statusFilter" onchange="renderTable()" class="px-3 py-2 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-600">
+            <option value="">ทุกสถานะ</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-100/75 text-slate-600 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
+              <th class="py-3 px-4">รหัสสินทรัพย์</th>
+              <th class="py-3 px-4">ประเภท</th>
+              <th class="py-3 px-4">ยี่ห้อ / รุ่น</th>
+              <th class="py-3 px-4">ผู้ครอบครอง / สถานที่</th>
+              <th class="py-3 px-4">สถานะ</th>
+              <th class="py-3 px-4 text-right">ราคาทุน (Cost)</th>
+              <th class="py-3 px-4 text-right">ค่าเสื่อมสะสม</th>
+              <th class="py-3 px-4 text-right">มูลค่าสุทธิ (NBV)</th>
+            </tr>
+          </thead>
+          <tbody id="assetTableBody" class="text-sm divide-y divide-slate-100 text-slate-700">
+            <tr>
+              <td colspan="8" class="text-center py-10 text-slate-400">กำลังเชื่อมต่อฐานข้อมูล Google Sheets...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-4 border-t border-slate-100 bg-slate-50/50 flex justify-between items-center text-xs text-slate-500">
+        <span id="recordCount">แสดง 0 รายการ</span>
+        <span>ระบบทะเบียนสินทรัพย์ Fixed Asset</span>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const SPREADSHEET_ID = '1fq8wUywEhG01LLSXQRZdt5MG_D_7itt_0IDKwSAOdVo';
+    const SHEET_NAME = 'Fixed Asset';
+    const DATA_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&range=B9:P200`;
+
+    let allAssets = [];
+    let charts = {};
+
+    async function fetchSheetData() {
+      try {
+        document.getElementById('lastUpdated').innerText = 'กำลังโหลด...';
+        const response = await fetch(DATA_URL);
+        const text = await response.text();
+        
+        // แปลงข้อความตอบกลับจาก Google ให้เป็น JSON
+        const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const json = JSON.parse(jsonString);
+
+        const rows = json.table.rows;
+        allAssets = [];
+
+        // วนลูปอ่านข้อมูลทีละแถว
+        for (let i = 1; i < rows.length; i++) {
+          const c = rows[i].c;
+          if (!c || !c[0] || !c[0].v) continue;
+
+          allAssets.push({
+            assetId: c[0] ? c[0].v : '',
+            financeCode: c[1] ? c[1].v : '',
+            type: c[2] ? c[2].v : 'Other',
+            status: c[3] ? c[3].v : 'Unknown',
+            assignedTo: c[4] ? c[4].v : 'Unassigned',
+            brand: c[5] ? c[5].v : '',
+            model: c[6] ? c[6].v : '',
+            serialNo: c[7] ? c[7].v : '',
+            purchaseDate: c[8] ? (c[8].f || c[8].v) : '',
+            cost: c[9] ? (parseFloat(c[9].v) || 0) : 0,
+            lifeYears: c[10] ? c[10].v : 0,
+            salvage: c[11] ? c[11].v : 0,
+            annualDep: c[12] ? (parseFloat(c[12].v) || 0) : 0,
+            accDep: c[13] ? (parseFloat(c[13].v) || 0) : 0,
+            nbv: c[14] ? (parseFloat(c[14].v) || 0) : 0
+          });
+        }
+
+        populateFilters();
+        updateKPIs();
+        updateCharts();
+        renderTable();
+
+        const now = new Date();
+        document.getElementById('lastUpdated').innerText = `อัปเดตล่าสุด: ${now.toLocaleTimeString('th-TH')}`;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById('lastUpdated').innerText = 'เกิดข้อผิดพลาดในการโหลดข้อมูล';
+        document.getElementById('assetTableBody').innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-8 text-rose-500 font-medium">
+              <i class="fa-solid fa-triangle-exclamation mr-1"></i> ไม่สามารถดึงข้อมูลได้ (กรุณาตรวจสอบว่าได้ตั้งค่าแชร์ชีตเป็น "ทุกคนที่มีลิงก์มีสิทธิ์อ่าน" แล้วหรือไม่)
+            </td>
+          </tr>`;
+      }
+    }
+
+    function populateFilters() {
+      const typeSet = new Set(allAssets.map(a => a.type));
+      const statusSet = new Set(allAssets.map(a => a.status));
+
+      const typeSelect = document.getElementById('typeFilter');
+      typeSelect.innerHTML = '<option value="">ทุกประเภทอุปกรณ์</option>';
+      typeSet.forEach(t => { if (t) typeSelect.innerHTML += `<option value="${t}">${t}</option>`; });
+
+      const statusSelect = document.getElementById('statusFilter');
+      statusSelect.innerHTML = '<option value="">ทุกสถานะ</option>';
+      statusSet.forEach(s => { if (s) statusSelect.innerHTML += `<option value="${s}">${s}</option>`; });
+    }
+
+    function updateKPIs() {
+      const totalCost = allAssets.reduce((sum, a) => sum + a.cost, 0);
+      const totalAccDep = allAssets.reduce((sum, a) => sum + a.accDep, 0);
+      const totalNBV = allAssets.reduce((sum, a) => sum + a.nbv, 0);
+
+      document.getElementById('kpiCost').innerText = formatCurrency(totalCost);
+      document.getElementById('kpiAccDep').innerText = formatCurrency(totalAccDep);
+      document.getElementById('kpiNBV').innerText = formatCurrency(totalNBV);
+      document.getElementById('kpiCount').innerText = `${allAssets.length} รายการ`;
+    }
+
+    function updateCharts() {
+      // 1. Chart ประเภทอุปกรณ์
+      const typeCounts = {};
+      allAssets.forEach(a => typeCounts[a.type] = (typeCounts[a.type] || 0) + 1);
+
+      renderOrUpdateChart('typeChart', 'doughnut', {
+        labels: Object.keys(typeCounts),
+        datasets: [{
+          data: Object.values(typeCounts),
+          backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#64748b']
+        }]
+      }, { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Prompt' } } } } });
+
+      // 2. Chart แบรนด์มูลค่าสูงสุด Top 5
+      const brandValues = {};
+      allAssets.forEach(a => {
+        if (a.brand) brandValues[a.brand] = (brandValues[a.brand] || 0) + a.cost;
+      });
+      const sortedBrands = Object.entries(brandValues).sort((a,b) => b[1] - a[1]).slice(0, 5);
+
+      renderOrUpdateChart('brandChart', 'bar', {
+        labels: sortedBrands.map(b => b[0]),
+        datasets: [{
+          label: 'มูลค่าราคาทุน (บาท)',
+          data: sortedBrands.map(b => b[1]),
+          backgroundColor: '#6366f1',
+          borderRadius: 6
+        }]
+      }, {
+        scales: { y: { ticks: { font: { family: 'Prompt' } } } },
+        plugins: { legend: { display: false } }
+      });
+
+      // 3. Chart สถานะ
+      const statusCounts = {};
+      allAssets.forEach(a => statusCounts[a.status] = (statusCounts[a.status] || 0) + 1);
+
+      renderOrUpdateChart('statusChart', 'pie', {
+        labels: Object.keys(statusCounts),
+        datasets: [{
+          data: Object.values(statusCounts),
+          backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#94a3b8']
+        }]
+      }, { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Prompt' } } } } });
+    }
+
+    function renderOrUpdateChart(id, type, data, options) {
+      if (charts[id]) charts[id].destroy();
+      const ctx = document.getElementById(id).getContext('2d');
+      charts[id] = new Chart(ctx, { type, data, options: { responsive: true, maintainAspectRatio: false, ...options } });
+    }
+
+    function renderTable() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const typeFilter = document.getElementById('typeFilter').value;
+      const statusFilter = document.getElementById('statusFilter').value;
+
+      const filtered = allAssets.filter(a => {
+        const matchesSearch = 
+          a.assetId.toLowerCase().includes(search) ||
+          a.assignedTo.toLowerCase().includes(search) ||
+          a.brand.toLowerCase().includes(search) ||
+          a.model.toLowerCase().includes(search) ||
+          a.serialNo.toLowerCase().includes(search);
+        const matchesType = !typeFilter || a.type === typeFilter;
+        const matchesStatus = !statusFilter || a.status === statusFilter;
+        return matchesSearch && matchesType && matchesStatus;
+      });
+
+      const tbody = document.getElementById('assetTableBody');
+      tbody.innerHTML = '';
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-slate-400">ไม่พบรายการที่ตรงกับคำค้นหา</td></tr>`;
+        document.getElementById('recordCount').innerText = `แสดง 0 รายการ`;
+        return;
+      }
+
+      filtered.forEach(a => {
+        let statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">Other</span>';
+        if (a.status === 'In Use') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-600">In Use</span>';
+        else if (a.status === 'Spare') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-600">Spare</span>';
+        else if (a.status === 'Broken') statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-50 text-rose-600">Broken</span>';
+
+        tbody.innerHTML += `
+          <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+            <td class="py-3 px-4 font-semibold text-slate-900">${a.assetId}</td>
+            <td class="py-3 px-4 text-slate-600">${a.type}</td>
+            <td class="py-3 px-4">
+              <div class="font-medium text-slate-800">${a.brand}</div>
+              <div class="text-xs text-slate-400">${a.model}</div>
+            </td>
+            <td class="py-3 px-4 text-slate-600">${a.assignedTo}</td>
+            <td class="py-3 px-4">${statusBadge}</td>
+            <td class="py-3 px-4 text-right font-medium text-slate-900">${formatCurrency(a.cost)}</td>
+            <td class="py-3 px-4 text-right text-rose-600">${formatCurrency(a.accDep)}</td>
+            <td class="py-3 px-4 text-right font-bold text-emerald-600">${formatCurrency(a.nbv)}</td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('recordCount').innerText = `แสดง ${filtered.length} จากทั้งหมด ${allAssets.length} รายการ`;
+    }
+
+    function formatCurrency(num) {
+      return '฿' + Number(num).toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    window.onload = fetchSheetData;
+  </script>
+</body>
+</html>
